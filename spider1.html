@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	After time starts, the textbox automatically enables and gets focus and the stopwatch starts.<br>
+	After completing, your speed will be displayed.<br>
+	<br>
+	Your text:<br>
+	<p id="f"></p>
+	<br>
+	<p id="t"></p>
+	<form>
+		<input type="text" name="te1" id="t1" onkeyup='func()'>
+		<script type="text/javascript">
+			var i=0,s = -4.00,k,x,content;
+			var text = "Oh baby, it's alright."
+			document.getElementById("f").innerHTML=text;
+			k = setInterval(time,1000);
+			function func(){
+				x = document.getElementById("t1").value.charAt(i);
+				if(x==text.charAt(i)){
+					content = document.getElementById("t1").value;
+					i++;
+				}
+				document.getElementById("t1").value=content;
+				if(i>=text.length-1){
+					clearInterval(k);
+					alert("Your typing speed = "+(i/s)+" characters per second");
+				}
+			}
+			function time(){
+				if(s<0){
+					document.getElementById("t").innerHTML="starts in: "+Math.abs(s);
+					document.getElementById("t1").setAttribute("disabled",true);
+				}
+				else{
+					document.getElementById("t").innerHTML="time taken: "+s;
+					document.getElementById("t1").removeAttribute('disabled');
+					document.getElementById("t1").focus();
+				}
+				s++;
+			}
+		</script>
+		<br>
+	</form>
+	<br>
+	<p id="d"></p>
+
+</body>
+</html>
